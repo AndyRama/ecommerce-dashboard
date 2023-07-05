@@ -1,14 +1,23 @@
 "use client"
 import * as z from "zod" ;
 import { useForm } from "react-hook-form";
-import {zodResolver} from "@hookform/resolvers/zod"
+import {zodResolver} from "@hookform/resolvers/zod";
 
-import { useStoreModal } from "@/hooks/use-store-modal"
-import { Modal } from "@/components/ui/modal"
+import { useStoreModal } from "@/hooks/use-store-modal";
+import { Modal } from "@/components/ui/modal";
 
-import { Form, FormField, FormItem, FormLabel, FormControl } from "@/components/ui/form";
+import { 
+  Form, 
+  FormField,
+  FormItem,
+  FormLabel, 
+  FormControl,
+  FormMessage
+ } 
+from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 import { useState } from "react";
 
@@ -34,7 +43,7 @@ export const StoreModal = () => {
   return (
     <Modal 
       title={"Create Store"} 
-      description={"add a new store to manage products and categories"} 
+      description={"Add a new store to manage products and categories"} 
       isOpen={storeModal.isOpen} 
       onClose={storeModal.onClose}
     >
@@ -52,15 +61,25 @@ export const StoreModal = () => {
                       <Input disabled={loading}
                       placeholder="E-commerce" {...field}></Input>
                     </FormControl>
+                    <FormMessage></FormMessage>
                   </FormItem>
                 )}
               />
+
+              <div className="pt-6 space-x-2 flex items-center justify-end">
+                <Button
+                  disabled={loading}
+                  variant={"outline"}
+                  onClick={storeModal.onClose}
+                >
+                  Cancel
+                </Button>
+                <Button>Continue</Button>
+              </div>
             </form>
           </Form>
         </div>
       </div>
-
-      Future Create Store Form
     </Modal>
   )
 }
