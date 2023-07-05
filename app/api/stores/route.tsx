@@ -24,6 +24,7 @@ export async function POST(
         userId
       }
     })
+    
     return NextResponse.json(store)
 
   } catch(error){
