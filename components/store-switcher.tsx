@@ -59,7 +59,7 @@ export default function StoreSwitcher({
           className={cn("w-[200px] justify-between", className)}
         >          
           <StoreIcon className="mr-2 h-4 w-4"/>
-          Current Store
+          {currentStore?.label}
           <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50"/>
         </Button>
       </PopoverTrigger>
@@ -69,24 +69,23 @@ export default function StoreSwitcher({
               <CommandInput placeholder="Search store..."/>
               <CommandEmpty>No store found.</CommandEmpty>
               <CommandGroup heading="Store">
-                { formattedItems.map((store) => {
+                {formattedItems.map((store) => (
                   <CommandItem
                     key={store.value}
                     onSelect={() => onStoreSelect(store)}
                     className="text-sm"
                   >
-                    <StoreIcon className="mr-2 h-4 w-4"/>
+                    <StoreIcon className="mr-2 h-4 w-4" />
                     {store.label}
                     <Check
                       className={cn(
                         "ml-auto h-4 w-4",
                         currentStore?.value === store.value
-                          ?"opacity-100"
-                          :"opacity-0"
-                      )}                    
+                        ? "opacity-100" : "opacity-0"
+                      )}
                     />
                   </CommandItem>
-                })}
+                ))}
               </CommandGroup>        
             </CommandList>
             <CommandSeparator/>
