@@ -1,5 +1,6 @@
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import Navbar from '@/components/navbar'
 
 import prismadb from "@/lib/prismadb";
 
@@ -30,7 +31,8 @@ const { userId } = auth();
 
   return(
     <>
-      <div>This will be a NavBar</div>
+      {/* <div>This will be a NavBar</div> */}
+      <Navbar/>
       {children}
     </>
   )
