@@ -9,7 +9,6 @@ export function MainNav({
 }: React.HTMLAttributes<HTMLElement>) {
 
   const pathname = usePathname();
-
   const params = useParams();
 
   const routes = [
@@ -32,6 +31,7 @@ export function MainNav({
           route.active ? "text-black dark:text-white" : "text-muted-foreground"
           )}
         >
+          {route.label}
         </Link>
       ))}
     </nav>
