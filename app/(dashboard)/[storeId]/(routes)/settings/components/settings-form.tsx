@@ -56,9 +56,12 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
           description="Manage store preferences"      
           />
         <Button
+          disabled={loading}
           variant="destructive"
           size="icon"
-          onClick={()=>{}}
+          onClick={()=>{
+            setOpen(true)
+          }}
           >
           <Trash className="h-4 w-4"/>
         </Button>
@@ -80,7 +83,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
               )}
             />
           </div>
-          <Button disabled={loading} className='ml-auto'type='submit'>
+          <Button disabled={loading} className='ml-auto' type='submit'>
             Save changes
           </Button>
         </form>
