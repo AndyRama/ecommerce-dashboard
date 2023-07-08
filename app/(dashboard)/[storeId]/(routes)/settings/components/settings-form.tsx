@@ -49,9 +49,10 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
   const onSubmit = async (data: SettingsFormValues) => {
     try {
       setLoading(true);
-      await axios.patch(`/api/stores/${params.storeId}`,data) ;
-      router.refresh();
-      toast.success("Store Update")
+      await axios.patch(`/api/stores/${params.storeId}`, data);
+      router.reload();
+
+      toast.success("Store Updated.")
     } catch (error) {
       toast.error("Something went wrong.")
     } finally{
