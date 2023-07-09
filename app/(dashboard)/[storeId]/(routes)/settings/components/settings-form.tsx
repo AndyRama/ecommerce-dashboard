@@ -48,7 +48,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
     defaultValues: initialData
   })
 
-  const onSubmit = async (data: SettingsFormValues) => {
+  const onSubmit = async (data: SettingsFormProps) => {
     try {
       setLoading(true);
       await axios.patch(`/api/stores/${params.storeId}`, data);
