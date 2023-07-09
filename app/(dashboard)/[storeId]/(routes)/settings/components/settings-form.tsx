@@ -8,7 +8,7 @@ import { Trash } from "lucide-react";
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 import { Heading } from "@/components/ui/heading";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,6 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { AlertModal } from '@/components/modals/alert-modal';
 
-import router from 'next/router';
 import { 
   Form,
   FormField,
@@ -24,7 +23,6 @@ import {
   FormLabel,
   FormControl
 } from '@/components/ui/form'
-
 
 interface SettingsFormProps {
   initialData: Store 
@@ -40,6 +38,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
   initialData
 }) => {
   const params = useParams();
+  const router = useRouter();
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
  
@@ -48,7 +47,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
     defaultValues: initialData
   })
 
-  const onSubmit = async (data: SettingsFormProps) => {
+  const onSubmit = async (data: SettingsFormValues) => {
     try {
       setLoading(true);
       await axios.patch(`/api/stores/${params.storeId}`, data);
@@ -65,9 +64,9 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
     try {
       setLoading(true);
       await axios.delete(`/api/stores/${params.storeId}`);
-      router.refresh()
-      router.push("/")
+      router.reload()
       toast.success("Store removed.")
+      router.push("/")
     } catch (error) {
       toast.error("Make sure you removed all products and categories first.")
     } finally{

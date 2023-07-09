@@ -4,11 +4,10 @@ import { NextResponse } from "next/server";
 
 export async function PATCH (
   req: Request,
-    { params }: { params: { storeId: string }}
+  { params }: { params: { storeId: string } }
 ) {
   try {
     const { userId } = auth();
-
     const body = await req.json()
 
     const { name } = body
@@ -22,7 +21,7 @@ export async function PATCH (
     }
 
     if(!params.storeId) {
-      return new NextResponse("StoreId is requiered", { status: 400})
+      return new NextResponse("Store id is requiered", { status: 400})
     }
 
     const store = await prismadb.store.updateMany({
@@ -33,7 +32,8 @@ export async function PATCH (
       data: {
         name
       }
-    }) 
+    }) ;
+
     return NextResponse.json(store);
 
   } catch(error) {
@@ -43,8 +43,8 @@ export async function PATCH (
 }
 
 export async function DELETE (
-  _req: Request,
-    { params }: { params: { storeId: string }}
+  req: Request,
+  { params }: { params: { storeId: string }}
 ) {
   try {
     const { userId } = auth();
@@ -63,6 +63,7 @@ export async function DELETE (
         userId
       }
     }) 
+
     return NextResponse.json(store);
     
   } catch(error) {
