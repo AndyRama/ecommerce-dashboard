@@ -31,7 +31,7 @@ interface SettingsFormProps {
 }
 
 const formSchema = z.object({
-  name: z.string().min(3)
+  name: z.string().min(1)
 })
 
 type SettingsFormValues = z.infer<typeof formSchema>;
@@ -52,8 +52,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
     try {
       setLoading(true);
       await axios.patch(`/api/stores/${params.storeId}`, data);
-      router.reload();
-
+      router.refresh();
       toast.success("Store Updated.")
     } catch (error) {
       toast.error("Something went wrong.")
@@ -66,7 +65,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
     try {
       setLoading(true);
       await axios.delete(`/api/stores/${params.storeId}`);
-      router.reload()
+      router.refresh()
       router.push("/")
       toast.success("Store removed.")
     } catch (error) {
@@ -80,7 +79,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
       <AlertModal
         isOpen={open}
         onClose={() => setOpen(false)}
-        onConfirm={() => {}}
+        onConfirm={onDelete}
         loading={loading}
       />
 
