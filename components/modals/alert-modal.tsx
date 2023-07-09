@@ -19,6 +19,7 @@ export const AlertModal: React.FC<AlertModalProps> = ({
 }) => {
 
   const [isMounted, setIsMounted] = useState(false);
+
   useEffect(() => {
     setIsMounted(true)
   }, [])
@@ -30,7 +31,7 @@ export const AlertModal: React.FC<AlertModalProps> = ({
   return (
     
     <Modal
-      title="Are you sure?"
+      title="Are you sure ?"
       description="Do you really want to delete this store?"
       isOpen={isOpen}
       onClose={onClose}
