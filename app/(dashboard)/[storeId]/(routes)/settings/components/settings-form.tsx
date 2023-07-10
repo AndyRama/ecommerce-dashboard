@@ -23,6 +23,7 @@ import {
   FormLabel,
   FormControl
 } from '@/components/ui/form'
+import { ApiAlert } from '@/components/ui/api-alert';
 
 interface SettingsFormProps {
   initialData: Store 
@@ -120,6 +121,8 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
           </Button>
         </form>
       </Form>
+      <Separator/>
+      <ApiAlert title='ok' description="ca marche"/>
     </>
   );
 };
