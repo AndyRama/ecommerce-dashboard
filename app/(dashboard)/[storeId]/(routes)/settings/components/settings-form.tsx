@@ -18,6 +18,7 @@ import { AlertModal } from '@/components/modals/alert-modal';
 import { ApiAlert } from '@/components/ui/api-alert';
 
 
+
 import { 
   Form,
   FormField,
@@ -25,7 +26,6 @@ import {
   FormLabel,
   FormControl
 } from '@/components/ui/form'
-
 
 interface SettingsFormProps {
   initialData: Store 
@@ -110,10 +110,16 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
-                 <FormControl>
-                    <Input disabled={loading} placeholder='Store Name' {...field}/>
-                 </FormControl>
+                  <FormLabel>
+                    Name
+                  </FormLabel>
+                  <FormControl>
+                    <Input 
+                      disabled={loading}
+                      placeholder='Store Name'
+                      {...field}
+                    />
+                  </FormControl>
                 </FormItem>
               )}
             />
@@ -124,7 +130,11 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
         </form>
       </Form>
       <Separator/>
-      <ApiAlert title='ok' description="ca marche" variant={'public'}/>
+      <ApiAlert
+        title='NEXT_PUBLIC_API_URL'
+        description={`${origin}/api/${params.storeId}`}
+        variant="public"
+      />
     </>
   );
 };
