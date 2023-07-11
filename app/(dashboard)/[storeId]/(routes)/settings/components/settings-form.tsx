@@ -15,6 +15,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { AlertModal } from '@/components/modals/alert-modal';
+import { ApiAlert } from '@/components/ui/api-alert';
+
 
 import { 
   Form,
@@ -23,7 +25,7 @@ import {
   FormLabel,
   FormControl
 } from '@/components/ui/form'
-import { ApiAlert } from '@/components/ui/api-alert';
+
 
 interface SettingsFormProps {
   initialData: Store 
@@ -122,7 +124,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
         </form>
       </Form>
       <Separator/>
-      <ApiAlert title='ok' description="ca marche"/>
+      <ApiAlert title='ok' description="ca marche" variant={'public'}/>
     </>
   );
 };

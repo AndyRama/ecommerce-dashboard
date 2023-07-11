@@ -9,7 +9,6 @@ interface AlertModalProps {
   onClose: () => void;
   onConfirm: () => void;
   loading: boolean;
-
 }
 export const AlertModal: React.FC<AlertModalProps> = ({
   isOpen,
@@ -28,8 +27,7 @@ export const AlertModal: React.FC<AlertModalProps> = ({
     return null
   }
 
-  return (
-    
+  return (    
     <Modal
       title="Are you sure ?"
       description="Do you really want to delete this store?"
@@ -51,7 +49,7 @@ export const AlertModal: React.FC<AlertModalProps> = ({
           > 
           Continue
         </Button>
-        </div>
+      </div>
     </Modal>
   )
 
