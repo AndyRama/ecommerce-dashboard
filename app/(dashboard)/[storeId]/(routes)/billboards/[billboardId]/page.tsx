@@ -3,3 +3,5 @@ const BillBoardsPage = () => {
     <div>This is form billboards</div>
   )
 }
+
+export default BillBoardsPage
