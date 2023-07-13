@@ -3,7 +3,7 @@ import { BillboardForm } from "../components/billboard-form";
 
 const BillBoardsPage = async ({
   params
-}: {
+} : {
   params: { billboardId: string }
 }) => {
   const billboard = await prismadb.billboard.findUnique({
