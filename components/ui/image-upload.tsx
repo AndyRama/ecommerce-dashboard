@@ -1,8 +1,8 @@
-"use client";
+"use client" 
 
 import Image from "next/image"
 import { useState, useEffect } from "react";
-import { Trash } from "lucide-react";
+import { ImagePlus, Trash } from "lucide-react";
 import { CldUploadWidget } from "next-cloudinary";
 
 import { Button } from "@/components/ui/button"
@@ -27,7 +27,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   }, []);
   
   const onUpload = (result: any) => {
-    onChange(result.info.secure_url)
+    onChange(result.info.secure_url);
   }
 
   if(!isMounted) {
@@ -53,8 +53,23 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
           </div> 
         ))}
       </div>
-      <CldUploadWidget onUpload={onUpload}>
+      <CldUploadWidget onUpload={onUpload} uploadPreset="mcfekmih">
+        {({ open }) => {
+          const onClick = () => {
+            open();
+          }
 
+          return (
+            <Button 
+              type="button"
+              disabled={disabled}
+              variant="secondary"
+              onClick={onClick}
+            >
+              <ImagePlus className="h-4 w-4 mr-2"/>
+            </Button>
+          )
+        }}
       </CldUploadWidget>
     </div>
   )
