@@ -28,7 +28,7 @@ import {
 
 const formSchema = z.object({
   label: z.string().min(1),
-  imageUrl: z.string().min(1)
+  imageUrl: z.string().min(1),
 })
 
 type BillboardFormValues = z.infer<typeof formSchema>;
@@ -45,8 +45,8 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
   const origin = useOrigin();
 
   const title = initialData ? "Edit billboard" : "Create billboard";
-  const description = initialData ? "Edit a billboard" : "Add a new billboard";
-  const toastMessage = initialData ? "Billboard Updated" : "Billboard created.";
+  const description = initialData ? "Edit a billboard." : "Add a new billboard.";
+  const toastMessage = initialData ? "Billboard updated." : "Billboard created.";
   const action = initialData ? "Save changes"  : "Create";
 
   const [open, setOpen] = useState(false)
@@ -109,8 +109,8 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
               onClick={()=>
                 setOpen(true)}
             >
-          <Trash className="h-4 w-4"/>
-          </Button>
+              <Trash className="h-4 w-4"/>
+            </Button>
           )}
       </div>
       <Separator/>
