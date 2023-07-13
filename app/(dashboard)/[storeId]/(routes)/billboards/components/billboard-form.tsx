@@ -64,7 +64,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
   const onSubmit = async (data: BillboardFormValues) => {
     try {
       setLoading(true);
-      await axios.patch(`/api/stores/${params.storeId}`, data);
+      await axios.patch(`/api/stores/${params.storeId}/billboards/${params.billboardId}`, data);
       router.refresh();
       toast.success("Store Updated.")
     } catch (error) {
@@ -77,7 +77,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/stores/${params.storeId}`);
+      await axios.delete(`/api/stores/${params.storeId}/billboards/${params.billboardId}`);
       router.refresh()
       toast.success("Store removed.")
       router.push("/")
@@ -132,7 +132,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                     onChange={(url) => field.onChange(url)}
                     onRemove={() => field.onChange("")}  
                   />
-              
                 </FormControl>
               </FormItem>
             )}
