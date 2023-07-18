@@ -1,13 +1,16 @@
 import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
+import { useParams } from "next/navigation";
 import { NextResponse } from "next/server";
 
 export async function POST(
   req: Request,
+  { params }: { params: { storeId: string } },
 ) {
   try {
     const { userId } = auth();
     const body = await req.json();
+
     const { label, imageUrl } = body
 
     if(!userId) {
@@ -17,23 +20,38 @@ export async function POST(
     if(!label) {
       return new NextResponse("label is requiered", { status: 400});
     }
-
     
     if(!imageUrl) {
       return new NextResponse("imageUrl is requiered", { status: 400});
+    }
+
+    if(!params.storeId) {
+      return new NextResponse("StoreId is requiered", { status: 400});
+    }
+
+    const storeByUserId = await prismadb.store.findFirst({
+      where: {
+        id: params.storeId,
+        userId
+      }
+    })
+
+    if(!storeByUserId){
+      return new  NextResponse("Unauthorized", { status: 403})
     }
    
     const billboard = await prismadb.billboard.create({
       data: {
       label,
-      imageUrl
+      imageUrl,
+      storeId: params.storeId
       }
     })
     
-    return NextResponse.json(store)
+    return NextResponse.json(billboard)
 
   } catch(error){
-    console.log('[STORES_POST]', error)
+    console.log('[BILLBOARD_POST]', error)
     return new NextResponse("Intenal error", { status: 500 });
   } 
 }
