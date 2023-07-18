@@ -5,15 +5,22 @@ import { Button } from "@/components/ui/button"
 import { Heading} from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
 import { useRouter, useParams } from "next/navigation"
+import { Billboard } from "@prisma/client"
 
-export const BillboardClient = () => {
+interface BillboardClientProps {
+  data: Billboard[]
+}
+
+export const BillboardClient: React.FC<BillboardClientProps> = ({
+  data
+}) => {
   const router = useRouter();
   const params = useParams()
   return (
     <>    
       <div className="flex items-center justify-between">
         <Heading
-          title="BillBoards (0)"
+          title={`BillBoards (${data.length})`}
           description="Manage billboards for your store "
         />
         <Button onClick={() => router.push(`/${params.storeId}/billboards/new`)}>
