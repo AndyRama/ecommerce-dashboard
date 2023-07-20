@@ -1,12 +1,14 @@
 "use client"
+
 import { Plus } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Heading} from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
 import { useRouter, useParams } from "next/navigation"
-import { BillboardColumn, columns } from "./columns"
 import { DataTable } from "@/components/ui/data-table"
+
+import { BillboardColumn, columns } from "./columns"
 
 interface BillboardClientProps {
   data: BillboardColumn[]
