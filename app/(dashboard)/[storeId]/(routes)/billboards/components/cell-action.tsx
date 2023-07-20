@@ -10,7 +10,8 @@ import {
 
 import { BillboardColumn } from "./columns"
 import { Button } from "@/components/ui/button"
-import { Edit, MoreHorizontal, Copy } from "lucide-react"
+import { Edit, MoreHorizontal, Copy, Trash } from "lucide-react"
+import { toast } from "react-hot-toast"
 
 interface CellActionProps {
   data: BillboardColumn
@@ -19,6 +20,10 @@ interface CellActionProps {
 export const CellAction: React.FC<CellActionProps> = ({
   data
 }) => {
+  const onCopy = (id:string) => {
+    navigator.clipboard.writeText(id)
+    toast.success("")
+  }
   return(
     <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -31,9 +36,9 @@ export const CellAction: React.FC<CellActionProps> = ({
         <DropdownMenuLabel>
           Actions
         </DropdownMenuLabel>
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => onCopy(data.id)}>
           <Copy className="mr-2 h-4 w-4"/>
-            CopyId
+          CopyId
         </DropdownMenuItem>
         <DropdownMenuItem>
           <Edit className="mr-2 h-4 w-4"/>
