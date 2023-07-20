@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { useState } from "react"
 
 import {
   ColumnDef,
@@ -21,7 +22,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { useState } from "react"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -34,7 +34,10 @@ export function DataTable<TData, TValue>({
   data,
   searchKey,
 }: DataTableProps<TData, TValue>) {
-const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+
+const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
+  []
+)
 
   const table = useReactTable({
     data,
@@ -52,7 +55,7 @@ const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
     <div>
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
+          placeholder="Search"
           value={(table.getColumn(searchKey)?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn(searchKey)?.setFilterValue(event.target.value)
