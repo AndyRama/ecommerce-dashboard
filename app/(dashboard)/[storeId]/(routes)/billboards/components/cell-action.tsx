@@ -22,7 +22,7 @@ export const CellAction: React.FC<CellActionProps> = ({
 }) => {
   const onCopy = (id:string) => {
     navigator.clipboard.writeText(id)
-    toast.success("")
+    toast.success("BillBoard Id copied to the clipboard.")
   }
   return(
     <DropdownMenu>
