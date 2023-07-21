@@ -29,6 +29,7 @@ export const CellAction: React.FC<CellActionProps> = ({
     navigator.clipboard.writeText(id)
     toast.success("BillBoard Id copied to the clipboard.")
   }
+
   return(
     <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -45,7 +46,7 @@ export const CellAction: React.FC<CellActionProps> = ({
           <Copy className="mr-2 h-4 w-4"/>
           CopyId
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.push(`/${params.id}/billboards/${data.id}`)}>
+        <DropdownMenuItem onClick={() => router.push(`/${params.stroreId}/billboards/${data.id}`)}>
           <Edit className="mr-2 h-4 w-4"/>
             Update
           </DropdownMenuItem>
