@@ -17,7 +17,6 @@ import { Separator } from "@/components/ui/separator";
 import { AlertModal } from '@/components/modals/alert-modal';
 import { ApiAlert } from '@/components/ui/api-alert';
 import { useOrigin } from '@/hooks/use-origin';
-import ImageUpload from '@/components/ui/image-upload';
 
 import { 
   Form,
@@ -28,8 +27,8 @@ import {
 } from '@/components/ui/form'
 
 const formSchema = z.object({
-  label: z.string().min(1),
-  imageUrl: z.string().min(1),
+  name: z.string().min(1),
+  billboardId: z.string().min(1),
 })
 
 type categoryFormValues = z.infer<typeof formSchema>;
@@ -38,16 +37,16 @@ interface categoryFormProps {
   initialData: Category | null; 
 }
 
-export const categoryForm: React.FC<categoryFormProps> = ({
+export const CategoryForm: React.FC<categoryFormProps> = ({
   initialData
 }) => {
   const params = useParams();
   const router = useRouter();
   const origin = useOrigin();
 
-  const title = initialData ? "Edit billboard" : "Create billboard";
-  const description = initialData ? "Edit a billboard." : "Add a new billboard.";
-  const toastMessage = initialData ? "Billboard updated." : "Billboard created.";
+  const title = initialData ? "Edit category" : "Create category";
+  const description = initialData ? "Edit a category." : "Add a new category.";
+  const toastMessage = initialData ? "Category updated." : "Category created.";
   const action = initialData ? "Save changes"  : "Create";
 
   const [open, setOpen] = useState(false)
@@ -56,8 +55,8 @@ export const categoryForm: React.FC<categoryFormProps> = ({
   const form = useForm<categoryFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
-      label: '',
-      imageUrl: '',
+      name: '',
+      billboardId: '',
     }
   })
 
@@ -122,38 +121,20 @@ export const categoryForm: React.FC<categoryFormProps> = ({
       <Separator/>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
-          <FormField
-            control={form.control}
-            name="imageUrl"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  Background image
-                </FormLabel>
-                <FormControl>
-                  <ImageUpload                   
-                    value={field.value ? [field.value] : []}
-                    disabled={loading}
-                    onChange={(url) => field.onChange(url)}
-                    onRemove={() => field.onChange("")}  
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
+          
           <div className="grid grid-cols-3 gap-8">
             <FormField
               control={form.control}
-              name="label"
+              name="name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Label
+                    Name
                   </FormLabel>
                   <FormControl>
                     <Input 
                       disabled={loading}
-                      placeholder='Billboard label'
+                      placeholder='Category name'
                       {...field}
                     />
                   </FormControl>
