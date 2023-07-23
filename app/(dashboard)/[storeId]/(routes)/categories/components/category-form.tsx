@@ -3,7 +3,7 @@
 import * as z from 'zod';
 import axios from 'axios';
 import { useState } from 'react';
-import { Category } from "@prisma/client";
+import { Billboard, Category } from "@prisma/client";
 import { Trash } from "lucide-react";
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
@@ -17,6 +17,13 @@ import { Separator } from "@/components/ui/separator";
 import { AlertModal } from '@/components/modals/alert-modal';
 import { ApiAlert } from '@/components/ui/api-alert';
 import { useOrigin } from '@/hooks/use-origin';
+
+import { 
+  Select, 
+  SelectContent, 
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select';
 
 import { 
   Form,
@@ -35,6 +42,7 @@ type categoryFormValues = z.infer<typeof formSchema>;
 
 interface categoryFormProps {
   initialData: Category | null; 
+  billboards: Billboard[]
 }
 
 export const CategoryForm: React.FC<categoryFormProps> = ({
@@ -138,6 +146,34 @@ export const CategoryForm: React.FC<categoryFormProps> = ({
                       {...field}
                     />
                   </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="billboardId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Billboard</FormLabel>
+                  <Select
+                    disabled={loading}
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    defaultValue={field.value}
+                  >                    
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue 
+                          defaultValue={field.value} 
+                          placeholder="Select a billboard"
+                          />
+                        
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      
+                    </SelectContent>
+                  </Select>
                 </FormItem>
               )}
             />
