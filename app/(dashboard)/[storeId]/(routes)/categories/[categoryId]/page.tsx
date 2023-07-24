@@ -23,7 +23,8 @@ const CategoryPage = async ({
       <div className="flex-1 space-y-4 p-8 pt-6">
         <CategoryForm 
           billboards={billboards} 
-          initialData={category}/>
+          initialData={category}
+        />
       </div>
     </div>
   )
