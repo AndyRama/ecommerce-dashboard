@@ -87,6 +87,7 @@ export const CategoryForm: React.FC<categoryFormProps> = ({
       setLoading(false)
     }
   }
+  
   const onDelete = async () => {
     try {
       setLoading(true);
