@@ -28,8 +28,8 @@ import {
 } from '@/components/ui/form'
 
 const formSchema = z.object({
-  label: z.string().min(1),
-  imageUrl: z.string().min(1),
+  name: z.string().min(1),
+  value: z.string().min(1),
 })
 
 type SizeFormValues = z.infer<typeof formSchema>;
