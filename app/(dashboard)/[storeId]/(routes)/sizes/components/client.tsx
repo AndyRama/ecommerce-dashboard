@@ -7,9 +7,9 @@ import { Heading} from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
 import { useRouter, useParams } from "next/navigation"
 import { DataTable } from "@/components/ui/data-table"
+import { ApiList } from "@/components/ui/api-list"
 
 import { SizeColumn, columns } from "./columns"
-import { ApiList } from "@/components/ui/api-list"
 
 interface SizesClientProps {
   data: SizeColumn[]

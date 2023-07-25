@@ -45,9 +45,9 @@ export const SizeForm: React.FC<SizeFormProps> = ({
   const router = useRouter();
   const origin = useOrigin();
 
-  const title = initialData ? "Edit billboard" : "Create billboard";
-  const description = initialData ? "Edit a billboard." : "Add a new billboard.";
-  const toastMessage = initialData ? "Billboard updated." : "Billboard created.";
+  const title = initialData ? "Edit size" : "Create size";
+  const description = initialData ? "Edit a size." : "Add a new size.";
+  const toastMessage = initialData ? "Size updated." : "Size created.";
   const action = initialData ? "Save changes"  : "Create";
 
   const [open, setOpen] = useState(false)
@@ -56,8 +56,8 @@ export const SizeForm: React.FC<SizeFormProps> = ({
   const form = useForm<SizeFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
-      label: '',
-      imageUrl: '',
+      name: '',
+      value: '',
     }
   })
 
@@ -121,39 +121,36 @@ export const SizeForm: React.FC<SizeFormProps> = ({
       </div>
       <Separator/>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
-          <FormField
-            control={form.control}
-            name="imageUrl"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  Background image
-                </FormLabel>
-                <FormControl>
-                  <ImageUpload                   
-                    value={field.value ? [field.value] : []}
-                    disabled={loading}
-                    onChange={(url) => field.onChange(url)}
-                    onRemove={() => field.onChange("")}  
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">      
           <div className="grid grid-cols-3 gap-8">
             <FormField
               control={form.control}
-              name="label"
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input 
+                      disabled={loading}
+                      placeholder='Size name'
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="value"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Label
+                    Name
                   </FormLabel>
                   <FormControl>
                     <Input 
                       disabled={loading}
-                      placeholder='Billboard label'
+                      placeholder='Size value'
                       {...field}
                     />
                   </FormControl>
