@@ -17,10 +17,10 @@ import {
 import { Button } from "@/components/ui/button"
 import { AlertModal } from "@/components/modals/alert-modal"
 
-import { SizeColumn } from "./columns"
+import { ColorColumn } from "./columns"
 
 interface CellActionProps {
-  data: SizeColumn
+  data: ColorColumn
 }
 
 export const CellAction: React.FC<CellActionProps> = ({
