@@ -9,13 +9,13 @@ import { useRouter, useParams } from "next/navigation"
 import { DataTable } from "@/components/ui/data-table"
 import { ApiList } from "@/components/ui/api-list"
 
-import { SizeColumn, columns } from "./columns"
+import { ColorColumn, columns } from "./columns"
 
-interface SizesClientProps {
-  data: SizeColumn[]
+interface ColorsClientProps {
+  data: ColorColumn[]
 }
 
-export const SizesClient: React.FC<SizesClientProps> = ({
+export const ColorsClient: React.FC<ColorsClientProps> = ({
   data
 }) => {
   const router = useRouter();
