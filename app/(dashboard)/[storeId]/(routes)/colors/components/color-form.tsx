@@ -3,7 +3,7 @@
 import * as z from 'zod';
 import axios from 'axios';
 import { useState } from 'react';
-import { Size } from "@prisma/client";
+import { Color } from "@prisma/client";
 import { Trash } from "lucide-react";
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
@@ -29,31 +29,33 @@ import {
 
 const formSchema = z.object({
   name: z.string().min(1),
-  value: z.string().min(1),
+  value: z.string().min(4).regex(/^#/, {
+    message: 'String must be a valid hex code'
+  })
 })
 
-type SizeFormValues = z.infer<typeof formSchema>;
+type ColorFormValues = z.infer<typeof formSchema>;
 
-interface SizeFormProps {
-  initialData: Size | null; 
+interface ColorFormProps {
+  initialData: Color | null; 
 }
 
-export const SizeForm: React.FC<SizeFormProps> = ({
+export const ColorForm: React.FC<ColorFormProps> = ({
   initialData
 }) => {
   const params = useParams();
   const router = useRouter();
   const origin = useOrigin();
 
-  const title = initialData ? "Edit size" : "Create size";
-  const description = initialData ? "Edit a size." : "Add a new size.";
+  const title = initialData ? "Edit color" : "Create color";
+  const description = initialData ? "Edit a color." : "Add a new color.";
   const toastMessage = initialData ? "Size updated." : "Size created.";
   const action = initialData ? "Save changes"  : "Create";
 
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
  
-  const form = useForm<SizeFormValues>({
+  const form = useForm<ColorFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
       name: '',
@@ -61,7 +63,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
     }
   })
 
-  const onSubmit = async (data: SizeFormValues) => {
+  const onSubmit = async (data: ColorFormValues) => {
     try {
       setLoading(true);
       if(initialData) {
@@ -132,7 +134,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
                   <FormControl>
                     <Input 
                       disabled={loading}
-                      placeholder='Size name'
+                      placeholder='Color name'
                       {...field}
                     />
                   </FormControl>
@@ -144,15 +146,18 @@ export const SizeForm: React.FC<SizeFormProps> = ({
               name="value"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    Value
-                  </FormLabel>
+                  <FormLabel>Value</FormLabel>
                   <FormControl>
-                    <Input 
-                      disabled={loading}
-                      placeholder='Size value'
-                      {...field}
-                    />
+                    <div 
+                      className='flex items-center gap-x-4'
+                      style={{backgroundColor: field.value}}
+                      >
+                      <Input 
+                        disabled={loading}
+                        placeholder='Color value'
+                        {...field}
+                      />
+                    </div>
                   </FormControl>
                 </FormItem>
               )}
