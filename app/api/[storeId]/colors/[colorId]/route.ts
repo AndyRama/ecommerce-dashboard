@@ -83,7 +83,7 @@ export async function PATCH (
 
 export async function DELETE (
   req: Request,
-  { params }: { params: { storeId: string, sizeId: string }}
+  { params }: { params: { storeId: string, colorId: string }}
 ) {
   try {
     const { userId } = auth();
@@ -92,8 +92,8 @@ export async function DELETE (
       return new NextResponse("Unauthenticated", { status: 401})
     }
 
-    if(!params.sizeId) {
-      return new NextResponse("Size id is requiered", { status: 400})
+    if(!params.colorId) {
+      return new NextResponse("Color id is requiered", { status: 400})
     }
 
     const storeByUserId = await prismadb.store.findFirst({
@@ -107,13 +107,13 @@ export async function DELETE (
       return new NextResponse("Unauthorized", { status: 403})
     }
 
-    const size = await prismadb.size.deleteMany({
+    const color = await prismadb.color.deleteMany({
       where: {
-        id: params.sizeId
+        id: params.colorId
       }
     }) 
 
-    return NextResponse.json(size);
+    return NextResponse.json(color);
     
   } catch(error) {
     console.log('[SIZE_DELETE]', error);
