@@ -28,7 +28,7 @@ export async function GET (
 }
 export async function PATCH (
   req: Request,
-  { params }: { params: { storeId: string, sizeId: string } }
+  { params }: { params: { storeId: string, colorId: string } }
 ) {
   try {
     const { userId } = auth();
@@ -48,8 +48,8 @@ export async function PATCH (
       return new NextResponse("Value is requiered", { status: 400})
     }
 
-    if(!params.sizeId) {
-      return new NextResponse("Size id is requiered", { status: 400})
+    if(!params.colorId) {
+      return new NextResponse("Color id is requiered", { status: 400})
     }
 
     const storeByUserId = await prismadb.store.findFirst({
@@ -63,9 +63,9 @@ export async function PATCH (
       return new NextResponse("Unauthorized", { status: 403})
     }
 
-    const size = await prismadb.size.updateMany({
+    const color = await prismadb.color.updateMany({
       where: {
-        id: params.sizeId
+        id: params.colorId
       },
       data: {
         name, 
@@ -73,10 +73,10 @@ export async function PATCH (
       }
     }) ;
 
-    return NextResponse.json(size);
+    return NextResponse.json(color);
 
   } catch(error) {
-    console.log('[SIZE_PATCH]', error);
+    console.log('[COLOR_PATCH]', error);
     return new NextResponse("Internal Error", {status: 500} )
   }
 }
