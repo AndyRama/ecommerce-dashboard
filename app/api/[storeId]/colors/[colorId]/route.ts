@@ -5,24 +5,24 @@ import prismadb from "@/lib/prismadb";
 
 export async function GET (
   req: Request,
-  { params }: { params: { sizeId: string }}
+  { params }: { params: { colorId: string }}
 ) {
   try {
     const { userId } = auth();
-    if(!params.sizeId) {
-      return new NextResponse("Size  is requiered", { status: 400})
+    if(!params.colorId) {
+      return new NextResponse("Color  is requiered", { status: 400})
     }
 
-    const size = await prismadb.size.findUnique({
+    const color = await prismadb.color.findUnique({
       where: {
-        id: params.sizeId
+        id: params.colorId
       }
     }) 
 
-    return NextResponse.json(size);
+    return NextResponse.json(color);
     
   } catch(error) {
-    console.log('[SIZE_GET]', error);
+    console.log('[COLOR_GET]', error);
     return new NextResponse("Internal Error", {status: 500} )
   }
 }

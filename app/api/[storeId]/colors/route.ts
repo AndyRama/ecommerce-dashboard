@@ -67,16 +67,16 @@ export async function GET(
       return new NextResponse("StoreId is requiered", { status: 400});
     }
    
-    const sizes = await prismadb.size.findMany({
+    const colors = await prismadb.color.findMany({
       where: {
         storeId: params.storeId
       }
     })
     
-    return NextResponse.json(sizes)
+    return NextResponse.json(colors)
 
   } catch(error){
-    console.log('[SIZES_GET]', error)
+    console.log('[COLORS_GET]', error)
     return new NextResponse("Intenal error", { status: 500 });
   } 
 }
