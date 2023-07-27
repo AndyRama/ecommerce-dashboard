@@ -40,7 +40,7 @@ export async function POST(
       return new  NextResponse("Unauthorized", { status: 403})
     }
    
-    const size = await prismadb.size.create({
+    const color = await prismadb.color.create({
       data: {
       name,
       value,
@@ -48,10 +48,10 @@ export async function POST(
       }
     })
     
-    return NextResponse.json(size)
+    return NextResponse.json(color)
 
   } catch(error){
-    console.log('[SIZES_POST]', error)
+    console.log('[COLORS_POST]', error)
     return new NextResponse("Intenal error", { status: 500 });
   } 
 }
