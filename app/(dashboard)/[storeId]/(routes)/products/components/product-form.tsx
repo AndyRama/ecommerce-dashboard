@@ -3,7 +3,7 @@
 import * as z from 'zod';
 import axios from 'axios';
 import { useState } from 'react';
-import { Image, Product } from "@prisma/client";
+import { Category, Image, Product, Size, Color } from "@prisma/client";
 import { Trash } from "lucide-react";
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
@@ -27,6 +27,15 @@ import {
   FormControl
 } from '@/components/ui/form'
 
+import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select'
+import { Checkbox } from '@/components/ui/checkbox';
+
 const formSchema = z.object({
   name: z.string().min(1),
   images: z.object({ url: z.string() }).array(),
@@ -44,10 +53,16 @@ interface ProductFormProps {
   initialData: Product & {
     images: Image[]
   } | null 
+  categories: Category[]
+  sizes: Size[]
+  colors: Color[]
 }
 
 export const ProductForm: React.FC<ProductFormProps> = ({
-  initialData
+  initialData,
+  categories,
+  colors,
+  sizes,
 }) => {
   const params = useParams();
   const router = useRouter();
@@ -161,14 +176,146 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    Name
-                  </FormLabel>
+                  <FormLabel>Name</FormLabel>
                   <FormControl>
                     <Input 
                       disabled={loading}
                       placeholder='Product name'
                       {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="price"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Price</FormLabel>
+                  <FormControl>
+                    <Input 
+                      type="number"
+                      disabled={loading}
+                      placeholder="9.99"
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="categoryId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Category</FormLabel>
+                  <Select
+                    disabled={loading}
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    defaultValue={field.value}
+                  >                    
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue 
+                          defaultValue={field.value} 
+                          placeholder="Select a category."
+                          />                        
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {categories.map((category) => (
+                        <SelectItem 
+                          key={category.id} 
+                          value={category.id}
+                        >
+                          {category.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="sizeId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Size</FormLabel>
+                  <Select
+                    disabled={loading}
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    defaultValue={field.value}
+                  >                    
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue 
+                          defaultValue={field.value} 
+                          placeholder="Select a size."
+                          />                        
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {sizes.map((size) => (
+                        <SelectItem 
+                        key={size.id} 
+                        value={size.id}
+                        >
+                          {size.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="colorId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Color</FormLabel>
+                  <Select
+                    disabled={loading}
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    defaultValue={field.value}
+                  >                    
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue 
+                          defaultValue={field.value} 
+                          placeholder="Select a color."
+                          />                        
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {colors.map((color) => (
+                        <SelectItem 
+                          key={color.id} 
+                          value={color.id}
+                        >
+                          {color.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="isFeature"
+              render={({ field }) => (
+                <FormItem className='flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4'>
+                  <FormControl>
+                    <Checkbox 
+                      // @ts-ignore
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
                     />
                   </FormControl>
                 </FormItem>
