@@ -59,7 +59,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
       name: '',
-      value: '',
+      value: ''
     }
   })
 
@@ -76,14 +76,14 @@ export const ColorForm: React.FC<ColorFormProps> = ({
       toast.success(toastMessage)
     } catch (error) {
       toast.error("Something went wrong.")
-    } finally{
+    } finally {
       setLoading(false)
     }
   }
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/colors/${params.sizeId}`);
+      await axios.delete(`/api/${params.storeId}/colors/${params.colorId}`);
       router.refresh()
       router.push("/")
       toast.success("Color deleted.")
