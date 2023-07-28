@@ -148,10 +148,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({
                 <FormItem>
                   <FormLabel>Value</FormLabel>
                   <FormControl>
-                    <div 
-                      className='flex items-center gap-x-4'
-                      style={{backgroundColor: field.value}}
-                      >
+                    <div className='flex items-center gap-x-4'>
                       <Input 
                         disabled={loading}
                         placeholder='Color value'
@@ -172,7 +169,6 @@ export const ColorForm: React.FC<ColorFormProps> = ({
           </Button>
         </form>
       </Form>
-      {/* <Separator/> */}
     </>
   );
 };
