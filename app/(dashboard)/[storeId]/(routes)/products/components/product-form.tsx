@@ -18,6 +18,7 @@ import { AlertModal } from '@/components/modals/alert-modal';
 import { ApiAlert } from '@/components/ui/api-alert';
 import { useOrigin } from '@/hooks/use-origin';
 import ImageUpload from '@/components/ui/image-upload';
+import { Checkbox } from '@/components/ui/checkbox';
 
 import { 
   Form,
@@ -35,7 +36,6 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import { Checkbox } from '@/components/ui/checkbox';
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -105,8 +105,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
       router.push(`/${params.storeId}/products`)
       toast.success(toastMessage)
     } catch (error) {
-      toast.error("Something went wrong.")
-    } finally{
+      toast.error("Something went wrong 2.")
+    } finally {
       setLoading(false)
     }
   }
@@ -119,7 +119,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
       toast.success("Product deleted.")
     } catch (error) {
       toast.error("Something went wrong.")
-    } finally{
+    } finally {
       setLoading(false)
       setOpen(false)
     }
