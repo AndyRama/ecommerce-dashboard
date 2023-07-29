@@ -6,10 +6,10 @@ import { formatter } from "@/lib/utils"
 import { ProductClient } from "./components/client"
 import { ProductColumn } from "./components/columns"
 
-const ProductsPage = async ({
+const ProductPage = async ({
   params
 }: {
-  params: {storeId: string }
+  params: { storeId: string }
 }) => {
   const products = await prismadb.product.findMany({
     where: {
@@ -18,7 +18,7 @@ const ProductsPage = async ({
     include: {
       category: true,
       size: true,
-      color: true,
+      color: true
     },
     orderBy: {
       createdAt: 'desc'
@@ -46,4 +46,4 @@ const ProductsPage = async ({
   )
 }
 
-export default ProductsPage
+export default ProductPage

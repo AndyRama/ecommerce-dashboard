@@ -38,7 +38,7 @@ export async function POST(
       return new NextResponse("Price is requiered", { status: 400});
     }
     
-    if(!images || !ImageResponse.length ) {
+    if(!images || !images.length ) {
       return new NextResponse("Images is requiered", { status: 400});
     }
     

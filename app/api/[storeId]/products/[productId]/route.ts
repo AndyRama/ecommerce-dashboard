@@ -17,7 +17,7 @@ export async function GET (
         id: params.productId
       },
       include: {
-        image: true,
+        images: true,
         category: true,
         size: true,
         color:true,
@@ -68,7 +68,7 @@ export async function PATCH (
     }
     
     if(!images || !images.length ) {
-      return new NextResponse("Images are requiered", { status: 400});
+      return new NextResponse("Images are requiered ", { status: 400});
     }
     
     if(!colorId) {
@@ -104,7 +104,7 @@ export async function PATCH (
         categoryId,
         colorId,
         sizeId,
-        image: {
+        images: {
           deleteMany: {}
         },
         isFeatured,
@@ -117,7 +117,7 @@ export async function PATCH (
         id: params.productId
       },
       data: {
-        image: {
+        images: {
           createMany: {
             data: [
               ...images.map((image: { url: string }) => image ),
