@@ -1,7 +1,7 @@
 import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
-import { useParams } from "next/navigation";
 import { ImageResponse, NextResponse } from "next/server";
+import { useParams } from "next/navigation";
 
 export async function POST(
   req: Request,
@@ -102,13 +102,13 @@ export async function GET(
 
     const { searchParams } = new URL(req.url)
     const categoryId = searchParams.get("categoryId") || undefined
-    const sizeId = searchParams.get("sizeId") || undefined
     const colorId = searchParams.get("colorId") || undefined
+    const sizeId = searchParams.get("sizeId") || undefined
     const isFeatured = searchParams.get("isFeatured") 
-    const isArchived = searchParams.get("isArchived") 
+    // const isArchived = searchParams.get("isArchived") 
 
     if(!params.storeId) {
-      return new NextResponse("StoreId is requiered", { status: 400});
+      return new NextResponse("Store id is requiered", { status: 400});
     }
    
     const products = await prismadb.product.findMany({
