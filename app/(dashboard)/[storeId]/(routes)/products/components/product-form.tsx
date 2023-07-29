@@ -309,13 +309,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             />
             <FormField
               control={form.control}
-              name="isFeature"
+              name="isFeatured"
               render={({ field }) => (
                 <FormItem className='flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4'>
                   <FormControl>
                     <Checkbox 
                       // @ts-ignore
                       checked={field.value}
+                      // @ts-ignore
                       onCheckedChange={field.onChange}
                     />
                   </FormControl>
@@ -339,6 +340,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     <Checkbox 
                       // @ts-ignore
                       checked={field.value}
+                      // @ts-ignore
                       onCheckedChange={field.onChange}
                     />
                   </FormControl>
@@ -347,7 +349,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                       Archived
                     </FormLabel>
                     <FormDescription>
-                      This product will not appear  anywhere in the store.
+                      This product will not appear anywhere in the store.
                     </FormDescription>
                   </div>
                 </FormItem>
