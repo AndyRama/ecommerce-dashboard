@@ -4,26 +4,26 @@ import { NextResponse } from "next/server";
 
 export async function GET (
   req: Request,
-  { params }: { params: { billboardId: string }}
+  { params }: { params: { productId: string }}
 ) {
   try {
     const { userId } = auth();
 
   
-    if(!params.billboardId) {
-      return new NextResponse("billboardId is requiered", { status: 400})
+    if(!params.productId) {
+      return new NextResponse("productId is requiered", { status: 400})
     }
 
-    const billboard = await prismadb.billboard.findUnique({
+    const product = await prismadb.product.findUnique({
       where: {
-        id: params.billboardId
+        id: params.productId
       }
     }) 
 
-    return NextResponse.json(billboard);
+    return NextResponse.json(product);
     
   } catch(error) {
-    console.log('[BILLBOARD_DELETE]', error);
+    console.log('[PRODUCTS_DELETE]', error);
     return new NextResponse("Internal Error", {status: 500} )
   }
 }
