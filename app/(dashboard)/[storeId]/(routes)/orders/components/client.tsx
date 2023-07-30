@@ -8,7 +8,7 @@ import { Separator } from "@/components/ui/separator"
 import { useRouter, useParams } from "next/navigation"
 import { DataTable } from "@/components/ui/data-table"
 
-import { BillboardColumn, columns } from "./columns"
+import { OrderColumn, columns } from "./columns"
 import { ApiList } from "@/components/ui/api-list"
 
 interface BillboardClientProps {
