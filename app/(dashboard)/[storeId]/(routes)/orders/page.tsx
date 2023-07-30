@@ -3,6 +3,7 @@ import { format } from "date-fns"
 import prismadb from "@/lib/prismadb"
 import {BillboardClient} from "./components/client"
 import { BillboardColumn } from "./components/columns"
+import { formatter } from "@/lib/utils"
 
 const OrdersPage = async ({
   params
@@ -14,16 +15,26 @@ const OrdersPage = async ({
       storeId: params.storeId
     },
     include: {
-      products: true
+      orderItems: {
+        include: {
+          product: true
+        }
+      }
     },
     orderBy: {
       createdAt: 'desc'
     }
   })
 
-  const formattedBillboards: BillboardColumn[] = billboards.map((item) => ({
+  const formattedBillboards: BillboardColumn[] = orders.map((item) => ({
     id: item.id,
-    label: item.label,
+    phone: item.phone,
+    address: item.address,
+    products: item.orderItems.map((orderItem) => orderItem.product.name).join(', '),
+    totalPrice: formatter.format(item.orderItems.reduce((total, item) => {
+      return total + Number(item.product.price)
+    },0)),
+
     createdAt: format(item.createdAt, "MMMM do, yyyy")
   }))
   
