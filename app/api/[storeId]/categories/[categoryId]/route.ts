@@ -8,7 +8,6 @@ export async function GET (
 ) {
   try {
     const { userId } = auth();
-
   
     if(!params.categoryId) {
       return new NextResponse("Category id is requiered", { status: 400})
@@ -17,6 +16,9 @@ export async function GET (
     const category = await prismadb.category.findUnique({
       where: {
         id: params.categoryId
+      },
+      include: {
+        billboard: true,
       }
     }) 
 
