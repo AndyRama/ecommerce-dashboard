@@ -43,7 +43,7 @@ export async function POST (
         },
         unit_amount : product.price.toNumber() * 100
       }
-    })
+    }) 
   });
   
   const order = await prismadb.order.create({
@@ -58,7 +58,7 @@ export async function POST (
             }
           }
         })
-  )}
+      )}
     }
   })
 
