@@ -1,3 +1,6 @@
+import { Card, CardHeader } from "@/components/ui/card"
+import { Heading } from "@/components/ui/heading"
+import { Separator } from "@/components/ui/separator"
 import prismadb from "@/lib/prismadb"
 
 interface DashboardPageProps {
@@ -7,17 +10,19 @@ interface DashboardPageProps {
 const DashboardPage: React.FC<DashboardPageProps> = async ({
     params
   }) => {
-    const store = await prismadb.store.findFirst({
-      where: {
-        id: params.storeId
-      }
 
-    })
-  
     return (
-     <div>
-      Activestore: {store?.name}
-    </div>
+      <div className="flex-col">
+        <Heading title="Dashboard" description="Overview of your store" />
+        <Separator />
+        <div className="grid gap-4 grid-cols-3" >
+          <Card>
+            <CardHeader>
+              Total Revenue
+            </CardHeader>
+          </Card>
+        </div>
+      </div>
   )
 }
 
