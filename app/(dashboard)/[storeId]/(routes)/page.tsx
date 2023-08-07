@@ -8,6 +8,7 @@ import { formatter } from "@/lib/utils"
 
 import { getTotalRevenue } from "@/actions/get-total-revenue"
 import { getSalesCount } from "@/actions/get-sales-count"
+import { getStockCount } from "@/actions/get-stock-count"
 
 interface DashboardPageProps {
   params: {storeId: string}
@@ -19,7 +20,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
 
     const totalRevenue = await getTotalRevenue(params.storeId)
     const salesCount = await getSalesCount(params.storeId)
-    // const stockCount = await getStockCount(params.storeId)
+    const stockCount = await getStockCount(params.storeId)
 
 
     return (
