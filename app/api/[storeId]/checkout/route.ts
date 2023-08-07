@@ -25,7 +25,7 @@ export async function POST (
 
   const products = await prismadb.product.findMany({
     where: {
-      id:{
+      id: {
         in: productIds
       }
     }
@@ -33,7 +33,7 @@ export async function POST (
 
   const  line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = []
 
-  productIds.forEach((product) => {
+  products.forEach((product) => {
     line_items.push({
       quantity:1 ,
       price_data: {
@@ -51,14 +51,14 @@ export async function POST (
       storeId: params.storeId,
       isPaid: false,
       orderItems: {
-        create: productIds.map((productId : string) => {
+        create: productIds.map((productId: string) => ({
           product: {
             connect: {
               id : productId
             }
           }
         })
-      }
+  )}
     }
   })
 
