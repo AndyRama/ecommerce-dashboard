@@ -6,6 +6,7 @@ import { ToasterProvider } from '@/providers/toast-provider'
 
 import './globals.css'
 import prismadb from '@/lib/prismadb'
+import { ThemeProvider } from '@/providers/theme-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,10 +26,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body suppressHydrationWarning={true}  className={inter.className}>
-          <ToasterProvider/>
-          <ModalProvider/>
-            {children}
+        <body className={inter.className}>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            <ToasterProvider/>
+            <ModalProvider/>
+              {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

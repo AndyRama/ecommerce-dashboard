@@ -27,8 +27,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
     const graphRevenue = await getGraphRevenue(params.storeId)
 
     const example = 1000 // Fake value
-
-
+    
     return (
       <div className="flex-col">
         <div className="flex-1 space-y-4 p-8 pt-6">
