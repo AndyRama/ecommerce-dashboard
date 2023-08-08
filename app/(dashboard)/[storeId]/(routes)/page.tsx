@@ -9,7 +9,9 @@ import { formatter } from "@/lib/utils"
 import { getTotalRevenue } from "@/actions/get-total-revenue"
 import { getSalesCount } from "@/actions/get-sales-count"
 import { getStockCount } from "@/actions/get-stock-count"
+import { getGraphRevenue } from "@/actions/get-graph revenue"
 import { Overview } from "@/components/overview"
+
 
 interface DashboardPageProps {
   params: {storeId: string}
@@ -22,6 +24,9 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
     const totalRevenue = await getTotalRevenue(params.storeId)
     const salesCount = await getSalesCount(params.storeId)
     const stockCount = await getStockCount(params.storeId)
+    const graphRevenue = await getGraphRevenue(params.storeId)
+
+    const example = 1000 // Fake value
 
 
     return (
@@ -39,7 +44,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">
-                  {formatter.format(1000)}
+                  {formatter.format(example)}
                   {/* {formatter.format(totalRevenue)} */}
                 </div>
               </CardContent>
@@ -78,7 +83,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
               <CardTitle>Overview</CardTitle>
             </CardHeader>
             <CardContent className="pl-2" >
-              <Overview data={[]} />
+              <Overview data={graphRevenue} />
             </CardContent>
           </Card>
         </div>
