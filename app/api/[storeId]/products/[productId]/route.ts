@@ -1,7 +1,7 @@
 import prismadb from "@/lib/prismadb";
 
-import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs";
 
 export async function GET (
   req: Request,
@@ -28,6 +28,46 @@ export async function GET (
     
   } catch(error) {
     console.log('[PRODUCT_GET]', error);
+    return new NextResponse("Internal Error", {status: 500} )
+  }
+}
+
+export async function DELETE (
+  req: Request,
+  { params }: { params: { storeId: string, productId: string }}
+) {
+  try {
+    const { userId } = auth();
+
+    if(!userId) {
+      return new NextResponse("Unauthenticated", { status: 401})
+    }
+
+    if(!params.productId) {
+      return new NextResponse("product id is requiered", { status: 400})
+    }
+
+    const storeByUserId = await prismadb.store.findFirst({
+      where: {
+        id: params.storeId,
+        userId
+      }
+    })
+
+    if(!storeByUserId) {
+      return new NextResponse("Unauthorized", { status: 403})
+    }
+
+    const product = await prismadb.product.deleteMany({
+      where: {
+        id: params.productId
+      }
+    }) 
+
+    return NextResponse.json(product);
+    
+  } catch(error) {
+    console.log('[PRODUCT_DELETE]', error);
     return new NextResponse("Internal Error", {status: 500} )
   }
 }
@@ -131,46 +171,6 @@ export async function PATCH (
 
   } catch(error) {
     console.log('[PRODUCT_PATCH]', error);
-    return new NextResponse("Internal Error", {status: 500} )
-  }
-}
-
-export async function DELETE (
-  req: Request,
-  { params }: { params: { storeId: string, productId: string }}
-) {
-  try {
-    const { userId } = auth();
-
-    if(!userId) {
-      return new NextResponse("Unauthenticated", { status: 401})
-    }
-
-    if(!params.productId) {
-      return new NextResponse("product id is requiered", { status: 400})
-    }
-
-    const storeByUserId = await prismadb.store.findFirst({
-      where: {
-        id: params.storeId,
-        userId
-      }
-    })
-
-    if(!storeByUserId) {
-      return new NextResponse("Unauthorized", { status: 403})
-    }
-
-    const product = await prismadb.product.deleteMany({
-      where: {
-        id: params.productId
-      }
-    }) 
-
-    return NextResponse.json(product);
-    
-  } catch(error) {
-    console.log('[PRODUCT_DELETE]', error);
     return new NextResponse("Internal Error", {status: 500} )
   }
 }
