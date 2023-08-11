@@ -59,8 +59,7 @@ export const CellAction: React.FC<CellActionProps> = ({
         isOpen={open}
         onClose={() => setOpen(false)}
         onConfirm={onDelete}
-        loading={loading}
-        
+        loading={loading}        
       />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -80,11 +79,11 @@ export const CellAction: React.FC<CellActionProps> = ({
         <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/billboards/${data.id}`)}>
           <Edit className="mr-2 h-4 w-4"/>
             Update
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setOpen(true)}>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setOpen(true)}>
           <Edit className="mr-2 h-4 w-4"/>
             Delete
-          </DropdownMenuItem>
+        </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </>

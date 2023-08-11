@@ -32,10 +32,10 @@ export const BillboardClient: React.FC<BillboardClientProps> = ({
           Add New
         </Button>
       </div>
-      <Separator/>
+      <Separator />
       <DataTable searchKey="label" columns={columns} data={data}/>
       <Heading title="API" description="API calls for Billboards"/>
-      <Separator/>
+      <Separator />
       <ApiList entityName="billboards" entityIdName="billboardId"/>
     </>
   )
