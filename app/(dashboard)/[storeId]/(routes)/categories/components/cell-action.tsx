@@ -30,8 +30,8 @@ export const CellAction: React.FC<CellActionProps> = ({
   const router = useRouter()
   const params = useParams()
 
-  const [loading, setLoading] = useState()
-  const [open, setOpen] = useState()
+  const [loading, setLoading] = useState(false)
+  const [open, setOpen] = useState(false)
 
   const onCopy = (id:string) => {
     navigator.clipboard.writeText(id)
