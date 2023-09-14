@@ -30,8 +30,8 @@ export const CellAction: React.FC<CellActionProps> = ({
   const router = useRouter()
   const params = useParams()
 
-  const [loading, setLoading] = useState(false)
   // const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false);
   const [open, setOpen] = useState(false)
 
   const onCopy = (id: string) => {
