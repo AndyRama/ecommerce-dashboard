@@ -53,7 +53,8 @@ export const ColorForm: React.FC<ColorFormProps> = ({
   const action = initialData ? "Save changes"  : "Create";
 
   const [open, setOpen] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false)
+  
  
   const form = useForm<ColorFormValues>({
     resolver: zodResolver(formSchema),
