@@ -31,7 +31,6 @@ const { userId } = auth();
 
   return(
     <>
-      {/* <div>This will be a NavBar</div> */}
       <Navbar/>
       {children}
     </>
