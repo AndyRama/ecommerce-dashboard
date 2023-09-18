@@ -2,7 +2,9 @@
 
 <kbd>![Dashboard-admin](./home.png)</kbd>
 
-<kbd>![Dashboard-admin](./order.png)</kbd>
+<kbd>![Products Page](./product-list.png)</kbd>
+
+<kbd>![Order Page](./order.png)</kbd>
 
 ### Recommanded IDE
 
