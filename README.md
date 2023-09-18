@@ -1,4 +1,4 @@
-# Matsuda-dashboard - CMS: E-Commerce Next.js 13 🇬🇧
+# Matsuda-admin 🇬🇧
 
 ### Recommanded IDE
 
@@ -12,14 +12,17 @@
 
 ### Dependances
 
-*  [NextJs](https://nextjs.org/)(version 18.2.0)
-*  [React](https://react.dev/learn)
-*  [Tailwind](https://fr.reactjs.org/docs/typechecking-with-proptypes.html)    
-*  [Stripe](https://reactdatepicker.com/)                              
-*  [shadcnUi](https://react-select.com/home#getting-started)                 
-*  [prisma](https://react-table-v7.tanstack.com/docs/examples/editable-data)
-*  [planetscale](https://www.npmjs.com/package/andyrama-modal)                
-
+*  [React](https://react.dev/learn)(version 18.2) 
+*  [NextJs](https://nextjs.org/)(version 13.4) 
+*  [Tailwind](https://tailwindui.com/)(version 3.3.2)  
+*  [Typescript](https://reactdatepicker.com/)(version 5.1.6)   
+*  [Shadcn-ui](https://react-select.com/home#getting-started)(version 14.x)      
+*  [Stripe](https://reactdatepicker.com/)(version 14.x)                               
+*  [Clerk](https://react-table-v7.tanstack.com/docs/examples/editable-data)(version 4.21)             
+*  [Prisma](https://react-table-v7.tanstack.com/docs/examples/editable-data)(version 4.16.2) 
+*  [Planetscale](https://www.npmjs.com/package/andyrama-modal)(version 14.x)
+*  [Cloudinary](https://cloudinary.com)(version 4.14.1)
+   
 ## Key Features:
 
 - We will be using Shadcn UI for the Admin!
